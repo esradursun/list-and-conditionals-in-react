@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Validation from './Validation/Validation';
+import Char from './Char/Char';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    userInput: ''
+  }
+
+  inputChangedHandler = ( event ) => {
+    this.setState( { userInput: event.target.value } );
+  }
+
+  deleteCharHandler = ( index ) => {
+    const text = this.state.userInput.split('');
+    text.splice(index, 1);
+    const updatedText = text.join('');
+    this.setState({userInput: updatedText});
+  }
+
+
+  render () {
+    const charList = this.state.userInput.split('').map((ch, index) => {
+      return <Char 
+        character={ch} 
+        key={index}
+        clicked={() => this.deleteCharHandler(index)} />;
+    });
+
+    return (
+      <div className="App">
+        <h1>Hi, This is a simple of how to use arrays and list methods in React App </h1>
+        <p>Type a string below</p>
+        <input
+            type="text"
+            onChange={this.inputChangedHandler}
+            value={this.state.userInput} />
+        <p>{this.state.userInput}</p>
+        <Validation inputLength={this.state.userInput.length} />
+        {charList}
+        {charList.length > 0 ? <p>You can click and delete the letter</p> : <p></p>}
+      </div>
+    );
+  }
 }
 
 export default App;
