@@ -66,4 +66,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
 # list-and-conditionals-in-react
+This application has 2 components which are Char and Validation. Basically you can type a text inside the textbox and the applications show you the length of that text and split it as a letter. And also you can delete the letter and update the main array which stays in the textbox.
+
+**The Validation component receives the text length as a prop and returns it to the app.js.
+**The Char component styles the text's letters as an inline box.
